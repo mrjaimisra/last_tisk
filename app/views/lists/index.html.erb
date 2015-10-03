@@ -1,0 +1,7 @@
+<h1>All Task Lists</h1>
+
+<div class="all-task-lists">
+  <% @lists.map do |list| %>
+    <%= link_to list.title, list_path(list) %>
+  <% end %>
+</div>
