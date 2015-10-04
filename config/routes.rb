@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "welcome#index"
 
-  resources :lists, only: [ :index, :show, :update ] do
+  resources :lists, only: [ :index, :show, :new, :create, :update ] do
     member do
       patch "archived"
       patch "unarchived"

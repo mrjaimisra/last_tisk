@@ -7,9 +7,22 @@ class ListsController < ApplicationController
     @list = List.find_by(id: params[:id])
   end
 
+  def new
+    @list = List.new
+  end
+
+  def create
+    @list = List.new(list_params)
+    if @list.save
+      redirect_to list_path(@list)
+    else
+      render :new
+    end
+  end
+
   def archived
     @list = List.find_by(id: params[:id])
-      @list.update_attribute(:status, "archived")
+    @list.update_attribute(:status, "archived")
     @list.save
 
     redirect_to list_path(@list)
@@ -17,7 +30,7 @@ class ListsController < ApplicationController
 
   def unarchived
     @list = List.find_by(id: params[:id])
-      @list.update_attribute(:status, "unarchived")
+    @list.update_attribute(:status, "unarchived")
     @list.save
 
     redirect_to list_path(@list)
@@ -26,6 +39,6 @@ class ListsController < ApplicationController
   private
 
     def list_params
-      params.permit(:list).require( :title, :user_id, :status )
+      params.require(:list).permit(:title, :user_id, :status)
     end
 end
