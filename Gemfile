@@ -39,6 +39,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
+  gem 'rails_12factor'
 end
 
 group :development do
