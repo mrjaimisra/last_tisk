@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root "welcome#index"
-  
-  get "/lists", to: "lists#index"
-  get "/list", to: "lists#show"
+
+  resources :lists, only: [ :index, :show, :update ] do
+    member do
+      patch "archived"
+      patch "unarchived"
+    end
+  end
+
+  get "/archived_lists", to: "archive#index"
 end
+

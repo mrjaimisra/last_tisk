@@ -1,0 +1,11 @@
+<%= link_to "All Lists", lists_path %>
+<%= link_to "Archived Lists", archived_lists_path %>
+
+<h1><%= @list.title %></h1>
+<h2>Status: <%= @list.status %></h2>
+
+<% if @list.status == "unarchived" %>
+  <%= button_to "Archive", archived_list_path(@list), method: :patch, confirm: "Archive this list?" %>
+<% else %>
+  <%= button_to "Unarchive", unarchived_list_path(@list), method: :patch, confirm: "Unarchive this list?" %>
+<% end %>

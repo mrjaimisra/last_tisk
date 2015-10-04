@@ -38,6 +38,7 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.0'
+  gem 'pry-rails'
 end
 
 group :development do
