@@ -14,9 +14,18 @@ Rails.application.routes.draw do
         patch "archived"
         patch "unarchived"
       end
+
+      resources :tasks, only: [:show, :new, :create] do
+        member do
+          patch "incomplete"
+          patch "complete"
+        end
+      end
+
+      get "/completed_tasks", to: "completed#index"
     end
+
       get "/archived_lists", to: "archive#index"
   end
 
 end
-
