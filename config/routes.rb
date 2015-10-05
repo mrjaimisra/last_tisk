@@ -25,7 +25,13 @@ Rails.application.routes.draw do
       get "/completed_tasks", to: "completed#index"
     end
 
-      get "/archived_lists", to: "archive#index"
-  end
+    get "/archived_lists", to: "archive#index"
 
+  end
+  namespace :api do
+    namespace :v1 do
+      resources :lists, except: [:new, :edit]
+      resources :tasks, except: [:new, :edit]
+    end
+  end
 end
