@@ -5,5 +5,4 @@ class List < ActiveRecord::Base
   validates :title, :status, :user_id, presence: true
 
   enum status: %w(unarchived archived)
-
 end

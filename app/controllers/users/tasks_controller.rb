@@ -16,6 +16,7 @@ class Users::TasksController < Users::UsersController
     @list = current_list
     @task = Task.new(task_params)
     @task.list_id = @list.id
+    @task.user_id = List.find_by(id: @task.list_id).user.id
     if @task.save
       redirect_to user_list_task_path(current_user.url, current_list, @task)
     else

@@ -1,5 +1,7 @@
-<%= link_to "All Lists", user_lists_path %>
-<%= link_to "Archived Lists", user_archived_lists_path %>
+<div class="top-links">
+  <%= link_to "All Lists", user_lists_path %>
+  <%= link_to "Archived Lists", user_archived_lists_path %>
+</div>
 
 <h1><%= @current_list.title %></h1>
 <h2>Status: <%= @current_list.status %></h2>
@@ -15,7 +17,7 @@
 
 <br/>
 
-  <%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>
+<%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>
 
 <br/>
 
@@ -26,5 +28,5 @@
 Incomplete Tasks:
 
 <% @current_list.tasks.where(status: 0).map do |task| %>
-<%= link_to task.title, user_list_task_path(current_user.url, @current_list, task) %>
+  <%= link_to task.title, user_list_task_path(current_user.url, @current_list, task) %>
 <% end %>
