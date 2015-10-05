@@ -1,32 +1,31 @@
-<div class="top-links">
-  <%= link_to "All Lists", user_lists_path %>
-  <%= link_to "Archived Lists", user_archived_lists_path %>
-</div>
+<h3>
+  <div class="top-links">
+    <%= link_to "All Lists", user_lists_path %> |
+    <%= link_to "Archived Lists", user_archived_lists_path %>
+  </div>
+</h3>
 
 <h1><%= @current_list.title %></h1>
-<h2>Status: <%= @current_list.status %></h2>
+<h4>Status: <%= @current_list.status %></h4>
+<h3><%= link_to "Add Task", new_user_list_task_path(current_user.url, @current_list) %>
+  |
+  <%= link_to "Completed Tasks", user_list_completed_tasks_path(current_user.url, @current_list) %></h3>
+<%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get, class: "btn btn-default" %>
 
-<%= link_to "Add Task", new_user_list_task_path(current_user.url, @current_list) %>
 
 <% if @current_list.status == "unarchived" %>
-  <%= button_to "Archive", archived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Archive this list?" %>
+  <%= button_to "Archive", archived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Archive this list?", class: "btn btn-default" %>
 <% else %>
-  <%= button_to "Unarchive", unarchived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Unarchive this list?" %>
-  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?" %>
+  <%= button_to "Unarchive", unarchived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Unarchive this list?", class: "btn btn-default" %>
+  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?", class: "btn btn-default" %>
 <% end %>
 
-<br/>
+<h3>
+  Incomplete Tasks:
+</h3>
 
-<%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>
-
-<br/>
-
-<%= link_to "Completed Tasks", user_list_completed_tasks_path(current_user.url, @current_list) %>
-
-<br/>
-
-Incomplete Tasks:
-
-<% @current_list.tasks.where(status: 0).map do |task| %>
-  <%= link_to task.title, user_list_task_path(current_user.url, @current_list, task) %>
-<% end %>
+<h4>
+  <% @current_list.tasks.where(status: 0).map do |task| %>
+    <%= link_to task.title, user_list_task_path(current_user.url, @current_list, task) %>
+  <% end %>
+</h4>
