@@ -23,6 +23,21 @@ class Users::TasksController < Users::UsersController
     end
   end
 
+  def edit
+    @list = current_list
+    @task = current_task
+  end
+
+  def update
+    @task = current_task
+    @list = current_list
+    if current_task.update_attributes(task_params)
+      redirect_to user_list_task_path(current_user.url, current_list, current_task)
+    else
+      render :edit
+    end
+  end
+
   def complete
     current_task.update_attribute(:status, "complete")
     current_task.save

@@ -19,7 +19,6 @@ class Users::ListsController < Users::UsersController
     if @list.save
       redirect_to user_list_path(current_user.url, @list)
     else
-      # flash[:error] = @list.errors.full_messages.join(". ")
       render :new
     end
   end
@@ -29,10 +28,11 @@ class Users::ListsController < Users::UsersController
   end
 
   def update
+    @list = current_list
     if current_list.update_attributes(list_params)
       redirect_to user_list_path(current_user.url, current_list)
     else
-      flash[:danger] = "Update failed, please enter valid information"
+      flash.now[:danger] = "Update failed, please enter valid information"
       render :edit
     end
   end

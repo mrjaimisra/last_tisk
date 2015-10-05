@@ -2,7 +2,9 @@
 
 <h1><%= @current_list.title %></h1>
 <h2><%= @task.title %></h2>
-<h2>Status: <%= @task.status %></h2>
+<h4>Status: <%= @task.status %></h4>
+<h4>Description: <%= @task.description %></h4>
+<h4>Due date: <%= @task.due_date %></h4>
 
 <% if @task.status == "incomplete" %>
   <%= button_to "Mark complete", complete_user_list_task_path(current_user.url, @current_list, @task), method: :patch %>
@@ -13,4 +15,4 @@
 
 <br/>
 
-<%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>
+<%= button_to "Edit", edit_user_list_task_path(current_user.url, @current_list, @task), method: :get %>
