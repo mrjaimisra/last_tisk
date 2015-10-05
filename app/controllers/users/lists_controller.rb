@@ -2,7 +2,8 @@ class Users::ListsController < Users::UsersController
   before_action :current_list, :authorize!, except: [:index, :new, :create]
 
   def index
-    @lists = current_user.lists.where(status: "unarchived")
+    @user = User.find_by(params[:url])
+    @lists = @user.lists.where(status: "unarchived")
   end
 
   def show
@@ -24,7 +25,7 @@ class Users::ListsController < Users::UsersController
   end
 
   def edit
-    @list = current_list
+    @list = List.find_by(id: params[:id])
   end
 
   def update
