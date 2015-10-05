@@ -1,0 +1,16 @@
+<%= link_to "Back to #{ @current_list.title }", user_list_path(current_user.url, @current_list) %>
+
+<h1><%= @current_list.title %></h1>
+<h2><%= @task.title %></h2>
+<h2>Status: <%= @task.status %></h2>
+
+<% if @task.status == "incomplete" %>
+  <%= button_to "Mark complete", complete_user_list_task_path(current_user.url, @current_list, @task), method: :patch %>
+<% else %>
+  <%= button_to "Mark incomplete", incomplete_user_list_task_path(current_user.url, @current_list, @task), method: :patch %>
+  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?" %>
+<% end %>
+
+<br/>
+
+<%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>
