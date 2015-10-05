@@ -1,12 +1,12 @@
 class Users::ListsController < Users::UsersController
-  before_action :current_list, :authorize!, except: [:index, :new, :create ]
+  before_action :current_list, :authorize!, except: [:index, :new, :create]
 
   def index
     @lists = current_user.lists.where(status: "unarchived")
   end
 
   def show
-      @list = current_list
+    @list = current_list
   end
 
   def new
@@ -21,6 +21,19 @@ class Users::ListsController < Users::UsersController
     else
       # flash[:error] = @list.errors.full_messages.join(". ")
       render :new
+    end
+  end
+
+  def edit
+    @list = current_list
+  end
+
+  def update
+    if current_list.update_attributes(list_params)
+      redirect_to user_list_path(current_user.url, current_list)
+    else
+      flash[:danger] = "Update failed, please enter valid information"
+      render :edit
     end
   end
 
@@ -40,15 +53,15 @@ class Users::ListsController < Users::UsersController
 
   private
 
-    def list_params
-      params.require(:list).permit(:title, :user_id, :status)
-    end
+  def list_params
+    params.require(:list).permit(:title, :user_id, :status)
+  end
 
-    def authorized?
-      current_list.user_id == current_user.id
-    end
+  def authorized?
+    current_list.user_id == current_user.id
+  end
 
-    def current_list
-      @current_list = List.find_by(id: params[:id])
-    end
+  def current_list
+    @current_list = List.find_by(id: params[:id])
+  end
 end
