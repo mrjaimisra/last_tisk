@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
+  get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
 
   namespace :users, path: ":user", as: :user do
-    resources :lists, only: [:index, :show, :new, :create, :update] do
+    resources :lists, only: [:index, :new, :create, :show, :edit, :update] do
       member do
         patch "archived"
         patch "unarchived"

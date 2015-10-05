@@ -9,3 +9,7 @@
 <% else %>
   <%= button_to "Unarchive", unarchived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Unarchive this list?" %>
 <% end %>
+
+<br/>
+
+  <%= button_to "Edit", edit_user_list_path(current_user.url, @current_list), method: :get %>

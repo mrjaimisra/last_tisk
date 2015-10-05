@@ -1,9 +1,13 @@
 def login
   visit root_path
 
-  click_link "Login"
+  within(".header-nav") do
+    click_link "Login"
+  end
 
-  fill_in "Username", with: user.username
-  fill_in "Password", with: user.password
-  click_on "Login"
+  within(".login-form") do
+    fill_in "Username", with: user.username
+    fill_in "Password", with: user.password
+    click_button "Login"
+  end
 end

@@ -8,11 +8,13 @@
 </head>
 <body>
 
-<% if current_user %>
-  <h1><%= current_user.username %></h1>
-<% end %>
+<%= render partial: "layouts/navbar" %>
 
-<%= yield %>
+<div class="container">
+  <div class="row">
+  <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
