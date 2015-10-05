@@ -1,0 +1,22 @@
+<h1>All Task Lists</h1>
+this is just a link to the <%= link_to "Archived Lists", user_archived_lists_path(current_user.url) %> page
+<%= link_to "Add A New List", new_user_list_path(current_user.url) %>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+HERE ARE THE LISTS:
+
+<div class="all-task-lists">
+  <% @lists.map do |list| %>
+    <%= link_to list.title, user_list_path(current_user.url, list) %>
+  <% end %>
+</div>

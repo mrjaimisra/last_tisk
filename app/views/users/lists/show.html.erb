@@ -1,0 +1,11 @@
+<%= link_to "All Lists", user_lists_path %>
+<%= link_to "Archived Lists", user_archived_lists_path %>
+
+<h1><%= @current_list.title %></h1>
+<h2>Status: <%= @current_list.status %></h2>
+
+<% if @current_list.status == "unarchived" %>
+  <%= button_to "Archive", archived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Archive this list?" %>
+<% else %>
+  <%= button_to "Unarchive", unarchived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Unarchive this list?" %>
+<% end %>
