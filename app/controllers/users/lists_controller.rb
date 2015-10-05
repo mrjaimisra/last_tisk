@@ -6,11 +6,7 @@ class Users::ListsController < Users::UsersController
   end
 
   def show
-    if current_list.user_id == current_user.id
       @list = current_list
-    else
-      redirect_to user_lists_path(current_user)
-    end
   end
 
   def new
@@ -55,5 +51,4 @@ class Users::ListsController < Users::UsersController
     def current_list
       @current_list = List.find_by(id: params[:id])
     end
-
 end
