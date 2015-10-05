@@ -8,6 +8,7 @@
   <%= button_to "Archive", archived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Archive this list?" %>
 <% else %>
   <%= button_to "Unarchive", unarchived_user_list_path(current_user.url, @current_list), method: :patch, confirm: "Unarchive this list?" %>
+  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?" %>
 <% end %>
 
 <br/>

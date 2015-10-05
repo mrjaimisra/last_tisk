@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :lists
 
   validates :username, :password, :url, presence: true
+  validates :username, uniqueness: true
 
   before_validation :generate_url
 
