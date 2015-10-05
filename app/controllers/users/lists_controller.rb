@@ -37,6 +37,13 @@ class Users::ListsController < Users::UsersController
     end
   end
 
+  def destroy
+    current_list.destroy
+
+    redirect_to user_lists_path
+    flash[:message] = "List successfully deleted"
+  end
+
   def archived
     current_list.update_attribute(:status, "archived")
     current_list.save

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   namespace :users, path: ":user", as: :user do
-    resources :lists, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :lists do
       member do
         patch "archived"
         patch "unarchived"
