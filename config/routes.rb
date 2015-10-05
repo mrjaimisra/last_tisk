@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         patch "unarchived"
       end
 
-      resources :tasks, only: [:show, :new, :create] do
+      resources :tasks, only: [:show, :new, :create, :edit, :update] do
         member do
           patch "incomplete"
           patch "complete"
