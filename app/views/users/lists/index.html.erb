@@ -1,8 +1,7 @@
 <h1>All Task Lists</h1>
-<h2><%= link_to "Archived Lists", user_archived_lists_path(current_user.url) %>
-  <br/>
-  <%= link_to "Add A New List", new_user_list_path(current_user.url) %>
-</h2>
+<h3><%= link_to "Add A New List", new_user_list_path(current_user.url) %> |
+<%= link_to "Archived Lists", user_archived_lists_path(current_user.url) %>
+</h3>
 
 <br/>
 <br/>

@@ -1,7 +1,8 @@
-<%= link_to @current_list.title, user_list_path(current_user.url, @current_list) %>
+<h3><%= link_to @current_list.title, user_list_path(current_user.url, @current_list) %></h3>
 
 <h1>Completed Tasks</h1>
 
-<% @tasks.map do |task| %>
+<h4><% @tasks.map do |task| %>
   <%= link_to task.title, user_list_task_path(current_user.url, @current_list, task) %>
 <% end %>
+</h4>

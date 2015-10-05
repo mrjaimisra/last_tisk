@@ -1,7 +1,8 @@
-<%= link_to "All Lists", user_lists_path %>
+<h3><- <%= link_to "All Lists", user_lists_path %></h3>
 
 <h1>Archived Lists</h1>
 
-<% @lists.map do |list| %>
+<h4><% @lists.map do |list| %>
   <%= link_to list.title, user_list_path(current_user.url, list) %>
 <% end %>
+</h4>

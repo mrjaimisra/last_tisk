@@ -1,18 +1,17 @@
-<%= link_to "Back to #{ @current_list.title }", user_list_path(current_user.url, @current_list) %>
+<h3><%= link_to "Back to #{ @current_list.title }", user_list_path(current_user.url, @current_list) %></h3>
 
-<h1><%= @current_list.title %></h1>
 <h2><%= @task.title %></h2>
 <h4>Status: <%= @task.status %></h4>
 <h4>Description: <%= @task.description %></h4>
 <h4>Due date: <%= @task.due_date %></h4>
 
 <% if @task.status == "incomplete" %>
-  <%= button_to "Mark complete", complete_user_list_task_path(current_user.url, @current_list, @task), method: :patch %>
+  <%= button_to "Mark complete", complete_user_list_task_path(current_user.url, @current_list, @task), method: :patch, class: "btn btn-default" %>
 <% else %>
-  <%= button_to "Mark incomplete", incomplete_user_list_task_path(current_user.url, @current_list, @task), method: :patch %>
-  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?" %>
+  <%= button_to "Mark incomplete", incomplete_user_list_task_path(current_user.url, @current_list, @task), method: :patch, class: "btn btn-default" %>
+  <%= button_to "Delete", user_list_path(current_user.url, @current_list), method: :delete, confirm: "Delete this list?", class: "btn btn-default" %>
 <% end %>
 
 <br/>
 
-<%= button_to "Edit", edit_user_list_task_path(current_user.url, @current_list, @task), method: :get %>
+<%= button_to "Edit", edit_user_list_task_path(current_user.url, @current_list, @task), method: :get, class: "btn btn-default" %>
