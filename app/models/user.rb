@@ -15,11 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def set_auth_token
-    return if token.present?
-    self.token = generate_auth_token
-  end
-
-  def generate_auth_token
-    SecureRandom.uuid.gsub(/\-/,'')
+    self.token = ApiKey.create!.access_token
   end
 end
